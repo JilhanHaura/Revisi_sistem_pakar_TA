@@ -27,7 +27,8 @@
                             <th>Nama Lengkap</th>
                             <th>Tanggal Konsultasi</th>
                             <th>Hasil Skrinning</th>
-                            <th>Action</th>
+                            <th>Persentase</th>
+                            {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -38,11 +39,12 @@
                                 <td>{{ $h->user->nama_lengkap }}</td>
                                 <td>{{ $h->tanggal_konsultasi }}</td>
                                 <td>{{ $h->hasil_skrinning }}</td>
-                                <td>
+                                <td> {{ number_format($h->cf_max, 1) * 10 }}%</td>
+                                {{-- <td>
                                     <a href="{{ route('user/history/show', $h->id) }}" class="btn btn-primary">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>

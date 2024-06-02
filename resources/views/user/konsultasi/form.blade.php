@@ -71,8 +71,8 @@
                                                 <option value="{{ $value->id }}_0">tidak pernah</option>
                                                 <option value="{{ $value->id }}_1">kadang-kadang</option>
                                                 <option value="" selected>Tidak tahu</option>
-                                                <option value="{{ $value->id }}_2">Mungkin</option>
-                                                <option value="{{ $value->id }}_3">Sangat sesuai</option>
+                                                <option value="{{ $value->id }}_2">Jarang</option>
+                                                <option value="{{ $value->id }}_3">Sering</option>
                                             </select>
                                             {{-- @dd($value) --}}
                                         </div>
@@ -92,8 +92,8 @@
                                                 <option value="{{ $value->id }}_0">tidak pernah</option>
                                                 <option value="{{ $value->id }}_1">kadang-kadang</option>
                                                 <option value="" selected>Tidak tahu</option>
-                                                <option value="{{ $value->id }}_2">Mungkin</option>
-                                                <option value="{{ $value->id }}_3">Sangat sesuai</option>
+                                                <option value="{{ $value->id }}_2">Jarang</option>
+                                                <option value="{{ $value->id }}_3">Sering</option>
                                             </select>
                                         </div>
                                     </div>
@@ -115,8 +115,8 @@
                         <h5 class="font-weight-bold"><strong>Keterangan:</strong> </h5>
                         <p>0: Tidak Pernah</p>
                         <p>1: Kadang-Kadang</p>
-                        <p>2: Mungkin</p>
-                        <p>3: Sangat Sesuai</p>
+                        <p>2: Jarang</p>
+                        <p>3: Sering</p>
                     </div>
                 </div>
             </div>

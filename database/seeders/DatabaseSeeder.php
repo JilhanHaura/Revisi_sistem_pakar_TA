@@ -240,61 +240,61 @@ class DatabaseSeeder extends Seeder
               'pernyataan'=>'Sulit untuk meningkatkan inisiatif dalam melakukan sesuatu'
            ]);
 
-           Rule::create([
+        Rule::create([
             'rule'=>'R01',
             'gejala_id'=>'G03',
             'pernyataan_id'=>'P01',
             'nilai_mb'=>'0.8',
-            'nilai_md'=>'0.2',
-            'nilai_cf'=>'0.6'
+            'nilai_md'=>'0.3',
+            'nilai_cf'=>'0.5'
         ]);
         Rule::create([
             'rule'=>'R02',
             'gejala_id'=>'G02',
             'pernyataan_id'=>'P01',
-            'nilai_mb'=>'0.8',
-            'nilai_md'=>'0.2',
-            'nilai_cf'=>'0.6'
+            'nilai_mb'=>'0.5',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.4'
         ]);
         Rule::create([
             'rule'=>'R03',
             'gejala_id'=>'G03',
             'pernyataan_id'=>'P02',
-            'nilai_mb'=>'0.8',
-            'nilai_md'=>'0.2',
-            'nilai_cf'=>'0.6'
+            'nilai_mb'=>'0.5',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.4'
         ]);
         Rule::create([
             'rule'=>'R04',
-            'gejala_id'=>'G03',
-            'pernyataan_id'=>'P05',
-            'nilai_mb'=>'0.8',
-            'nilai_md'=>'0.2',
-            'nilai_cf'=>'0.6'
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P02',
+            'nilai_mb'=>'0.5',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.4'
         ]);
         Rule::create([
             'rule'=>'R05',
             'gejala_id'=>'G02',
-            'pernyataan_id'=>'P02',
-            'nilai_mb'=>'0.8',
-            'nilai_md'=>'0.2',
+            'pernyataan_id'=>'P04',
+            'nilai_mb'=>'0.9',
+            'nilai_md'=>'0.3',
             'nilai_cf'=>'0.6'
         ]);
         Rule::create([
             'rule'=>'R06',
-            'gejala_id'=>'G02',
-            'pernyataan_id'=>'P05',
-            'nilai_mb'=>'0.8',
-            'nilai_md'=>'0.2',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P04',
+            'nilai_mb'=>'0.9',
+            'nilai_md'=>'0.3',
             'nilai_cf'=>'0.6'
         ]);
         Rule::create([
             'rule'=>'R07',
-            'gejala_id'=>'G02',
-            'pernyataan_id'=>'P11',
-            'nilai_mb'=>'0.8',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P05',
+            'nilai_mb'=>'0.6',
             'nilai_md'=>'0.2',
-            'nilai_cf'=>'0.6'
+            'nilai_cf'=>'0.4'
         ]);
         Rule::create([
             'rule'=>'R08',
@@ -307,26 +307,346 @@ class DatabaseSeeder extends Seeder
         Rule::create([
             'rule'=>'R09',
             'gejala_id'=>'G03',
-            'pernyataan_id'=>'P15',
-            'nilai_mb'=>'0.8',
-            'nilai_md'=>'0.2',
-            'nilai_cf'=>'0.6'
+            'pernyataan_id'=>'P06',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.5',
+            'nilai_cf'=>'0.2'
         ]);
         Rule::create([
             'rule'=>'R10',
             'gejala_id'=>'G01',
+            'pernyataan_id'=>'P08',
+            'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.6',
+            'nilai_cf'=>'2'
+        ]);
+        Rule::create([
+            'rule'=>'R11',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P08',
+            'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.6',
+            'nilai_cf'=>'2'
+        ]);
+        Rule::create([
+            'rule'=>'R12',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P09',
+            'nilai_mb'=>'0.9',
+            'nilai_md'=>'0.4',
+            'nilai_cf'=>'0.5'
+        ]);
+        Rule::create([
+            'rule'=>'R13',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P10',
+            'nilai_mb'=>'0.3',
+            'nilai_md'=>'0.2',
+            'nilai_cf'=>'0.1'
+        ]);
+        Rule::create([
+            'rule'=>'R14',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P11',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.7',
+            'nilai_cf'=>'0.0'
+        ]);
+        Rule::create([
+            'rule'=>'R15',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P11',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.7',
+            'nilai_cf'=>'0.0'
+        ]);
+        Rule::create([
+            'rule'=>'R16',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P12',
+            'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.3',
+            'nilai_cf'=>'0.5'
+        ]);
+        Rule::create([
+            'rule'=>'R17',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P12',
+            'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.3',
+            'nilai_cf'=>'0.5'
+        ]);
+        Rule::create([
+            'rule'=>'R18',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P13',
+            'nilai_mb'=>'0.6',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.5'
+        ]);
+        Rule::create([
+            'rule'=>'R19',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P14',
+            'nilai_mb'=>'0.4',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.3'
+        ]);
+        Rule::create([
+            'rule'=>'R20',
+            'gejala_id'=>'G01',
             'pernyataan_id'=>'P15',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.5',
+            'nilai_cf'=>'0.2'
+        ]);
+        Rule::create([
+            'rule'=>'R21',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P15',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.5',
+            'nilai_cf'=>'0.2'
+        ]);
+        Rule::create([
+            'rule'=>'R22',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P16',
+            'nilai_mb'=>'0.4',
+            'nilai_md'=>'0.2',
+            'nilai_cf'=>'0.2'
+        ]);
+        Rule::create([
+            'rule'=>'R23',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P16',
+            'nilai_mb'=>'0.4',
+            'nilai_md'=>'0.2',
+            'nilai_cf'=>'0.2'
+        ]);
+        Rule::create([
+            'rule'=>'R24',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P17',
+            'nilai_mb'=>'0.9',
+            'nilai_md'=>'0.7',
+            'nilai_cf'=>'0.2'
+        ]);
+        Rule::create([
+            'rule'=>'R25',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P18',
+            'nilai_mb'=>'0.6',
+            'nilai_md'=>'0.5',
+            'nilai_cf'=>'0.1'
+        ]);
+        Rule::create([
+            'rule'=>'R26',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P19',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.6'
+        ]);
+        Rule::create([
+            'rule'=>'R27',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P20',
+            'nilai_mb'=>'0.3',
+            'nilai_md'=>'0.2',
+            'nilai_cf'=>'0.1'
+        ]);
+        Rule::create([
+            'rule'=>'R28',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P21',
+            'nilai_mb'=>'0.3',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.2'
+        ]);
+        Rule::create([
+            'rule'=>'R29',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P22',
+            'nilai_mb'=>'0.9',
+            'nilai_md'=>'0.5',
+            'nilai_cf'=>'0.4'
+        ]);
+        Rule::create([
+            'rule'=>'R30',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P23',
             'nilai_mb'=>'0.8',
             'nilai_md'=>'0.2',
             'nilai_cf'=>'0.6'
         ]);
         Rule::create([
-            'rule'=>'R11',
+            'rule'=>'R31',
             'gejala_id'=>'G01',
-            'pernyataan_id'=>'P12',
+            'pernyataan_id'=>'P24',
+            'nilai_mb'=>'0.5',
+            'nilai_md'=>'0.4',
+            'nilai_cf'=>'0.1'
+        ]);
+        Rule::create([
+            'rule'=>'R32',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P24',
+            'nilai_mb'=>'0.5',
+            'nilai_md'=>'0.4',
+            'nilai_cf'=>'0.1'
+        ]);
+        Rule::create([
+            'rule'=>'R33',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P25',
             'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.6',
+            'nilai_cf'=>'0.2'
+        ]);
+        Rule::create([
+            'rule'=>'R34',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P26',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.4',
+            'nilai_cf'=>'0.3'
+        ]);
+        Rule::create([
+            'rule'=>'R35',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P27',
+            'nilai_mb'=>'0.4',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.3'
+        ]);
+        Rule::create([
+            'rule'=>'R36',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P28',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.3',
+            'nilai_cf'=>'0.4'
+        ]);
+        Rule::create([
+            'rule'=>'R37',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P29',
+            'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.6',
+            'nilai_cf'=>'0.2'
+        ]);
+        Rule::create([
+            'rule'=>'R38',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P30',
+            'nilai_mb'=>'0.5',
             'nilai_md'=>'0.2',
+            'nilai_cf'=>'0.3'
+        ]);
+        Rule::create([
+            'rule'=>'R39',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P31',
+            'nilai_mb'=>'0.6',
+            'nilai_md'=>'0.3',
+            'nilai_cf'=>'0.3'
+        ]);
+        Rule::create([
+            'rule'=>'R40',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P32',
+            'nilai_mb'=>'0.9',
+            'nilai_md'=>'0.2',
+            'nilai_cf'=>'0.7'
+        ]);
+        Rule::create([
+            'rule'=>'R41',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P33',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.1',
             'nilai_cf'=>'0.6'
+        ]);
+        Rule::create([
+            'rule'=>'R42',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P34',
+            'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.7'
+        ]);
+        Rule::create([
+            'rule'=>'R43',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P35',
+            'nilai_mb'=>'0.9',
+            'nilai_md'=>'0.5',
+            'nilai_cf'=>'0.4'
+        ]);
+        Rule::create([
+            'rule'=>'R44',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P36',
+            'nilai_mb'=>'0.6',
+            'nilai_md'=>'0.3',
+            'nilai_cf'=>'0.3'
+        ]);
+        Rule::create([
+            'rule'=>'R45',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P37',
+            'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.4',
+            'nilai_cf'=>'0.4'
+        ]);
+        Rule::create([
+            'rule'=>'R46',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P38',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.3',
+            'nilai_cf'=>'0.4'
+        ]);
+        Rule::create([
+            'rule'=>'R47',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P39',
+            'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.7'
+        ]);
+        Rule::create([
+            'rule'=>'R48',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P40',
+            'nilai_mb'=>'0.7',
+            'nilai_md'=>'0.2',
+            'nilai_cf'=>'0.5'
+        ]);
+        Rule::create([
+            'rule'=>'R49',
+            'gejala_id'=>'G02',
+            'pernyataan_id'=>'P41',
+            'nilai_mb'=>'0.5',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.4'
+        ]);
+        Rule::create([
+            'rule'=>'R50',
+            'gejala_id'=>'G03',
+            'pernyataan_id'=>'P41',
+            'nilai_mb'=>'0.5',
+            'nilai_md'=>'0.1',
+            'nilai_cf'=>'0.4'
+        ]);
+        Rule::create([
+            'rule'=>'R51',
+            'gejala_id'=>'G01',
+            'pernyataan_id'=>'P42',
+            'nilai_mb'=>'0.8',
+            'nilai_md'=>'0.6',
+            'nilai_cf'=>'0.2'
         ]);
 
     }

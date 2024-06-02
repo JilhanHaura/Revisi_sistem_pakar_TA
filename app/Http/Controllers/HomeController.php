@@ -41,7 +41,7 @@ class HomeController extends Controller
     }
     public function show($id)
     {
-        $konsultasi = Konsultasi::findOrFail($id); // Mengambil data konsultasi berdasarkan ID
+        $konsultasi = Konsultasi::findOrFail($id);
         $result = session('result');
         dd($result);
         return view('user/history/show', compact('konsultasi', 'result'));
