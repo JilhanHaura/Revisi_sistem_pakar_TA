@@ -13,7 +13,8 @@
                         class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">History </li>
-            <li><a class="nav-link" href="#"><i class="fas fa-history"></i><span>Riwayat User</span></a></li>
+            <li><a class="nav-link" href="{{ url('/admin/history') }}"><i class="fas fa-history"></i><span>Riwayat
+                        User</span></a></li>
             <li class="menu-header">Main </li>
             <li><a class="nav-link" href="{{ url('/admin/gejala') }}"><i class="fas fa-columns"></i><span>DATA
                         GEJALA</span></a></li>

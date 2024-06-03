@@ -47,6 +47,12 @@ class HomeController extends Controller
         return view('user/history/show', compact('konsultasi', 'result'));
     }
 
+    public function historyAdmin(){
+        $historyAdmin = User::all();
+        // dd($history);
+        return view('Admin.history.index', compact('historyAdmin'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

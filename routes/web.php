@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\PernyataanController;
 use App\Http\Controllers\RuleController;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 // Route::controller(AuthController::class)->group(function(){
 //     Route::get('register'.'register')->name('register');
 // });
+Route::get('/email/needVerification', [AdminController::class, 'notice'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [AdminController::class, 'verify'])->middleware('auth','signed')->name('verification.verify');
+Route::post('/email/resend', [AdminController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerSave'])->name('register.save');
@@ -34,6 +38,7 @@ Route::post('/login', [AuthController::class, 'loginAction'])->name('login.actio
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 
+Route::middleware(['auth', 'verified'])->group(function() {
 Route::middleware(['auth','user-access:user'])->group(function(){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/user/profile', [AdminController::class, 'profileuser'])->name('user/profile');
@@ -63,4 +68,8 @@ Route::middleware(['auth','user-access:admin'])->group(function(){
     Route::get('/admin/rule/create',[RuleController::class,'create'])->name('admin/rule/create');
     Route::post('/admin/rule/store',[RuleController::class,'store'])->name('admin/rule/store');
 
+    Route::get('/admin/history', [HomeController::class, 'historyAdmin'])->name('admin/history');
+    Route::get('/admin/history/show/{id}', [HomeController::class, 'show'])->name('admin/history/show');
+
+});
 });

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     /**
@@ -18,56 +19,27 @@ class AdminController extends Controller
    public function profileuser(){
     return view('user.profile');
    }
-     public function index()
-    {
-        //
-    }
+   public function notice()
+   {
+       return view('verify');
+   }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+   public function verify(EmailVerificationRequest $request)
+   {
+       $request->fulfill();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreAdminRequest $request)
-    {
-        //
-    }
+       if(auth()->user()->type=='admin') {
+           return redirect()->route('admin/home')->with('status', 'Email berhasil diverifikasi.');
+       } else {
+           return redirect()->route('home')->with('status', 'Email berhasil diverifikasi.');
+       }
+   }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
-    {
-        //
-    }
+   public function resend(Request $request)
+   {
+       $request->user()->sendEmailVerificationNotification();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Admin $admin)
-    {
-        //
-    }
+       return back()->with('status', 'Tautan verifikasi baru telah dikirim ke email Anda.');
+   }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAdminRequest $request, Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Admin $admin)
-    {
-        //
-    }
 }

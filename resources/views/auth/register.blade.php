@@ -109,8 +109,8 @@
                                             <div class="form-group col-6">
                                                 <label for="confirm-password" class="d-block">Password
                                                     Confirmation</label>
-                                                <input id="password_confirmation" type="confirm-password"
-                                                    class="form-control" name="password_confirmation">
+                                                <input id="password_confirmation" type="password" class="form-control"
+                                                    name="password_confirmation">
                                                 @error('password_confirmation')
                                                     <span class="text-red-600">{{ $message }}</span>
                                                 @enderror
@@ -118,8 +118,6 @@
 
                                         </div>
                                     </div>
-
-
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block">
                                             Register

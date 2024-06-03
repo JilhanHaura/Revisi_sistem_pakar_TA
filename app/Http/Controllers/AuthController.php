@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAuthRequest;
 use App\Http\Requests\UpdateAuthRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\ValidationException;
 // use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\Validator;
@@ -27,14 +28,6 @@ class AuthController extends Controller
     }
 
     public function registerSave(Request $request){
-        // Validator::make($request->all(),[
-        //     'nik'=>'required|digits:16',
-        //     'nama_lengkap'=>'required',
-        //     'tanggal_lahir'=>'required',
-        //     'alamat'=>'required',
-        //     'email'=>'required',
-        //     'password'=>'required|confirmed'
-        // ])->validate();
         Validator::make($request->all(), [
             'nik' => 'required|digits:16',
             'nama_lengkap' => 'required',
@@ -51,7 +44,7 @@ class AuthController extends Controller
             }
         })->validate();
 
-        User::create([
+        $user =User::create([
             'nik'=>$request->nik,
             'nama_lengkap'=>$request->nama_lengkap,
             'tanggal_lahir'=>$request->tanggal_lahir,
@@ -60,7 +53,11 @@ class AuthController extends Controller
             'password'=>Hash::make($request->password),
             'type'=>"0"
         ]);
-        return redirect()->route('login');
+        // return redirect()->route('login');
+        // return ($request);
+        event(new Registered($user));
+        auth()->login($user);
+        return redirect()->route('verification.notice')->with('sukses','akun berhasil dibuat, silahkan verifikasi email anda');
     }
     public function login(){
         return view('auth/login');
@@ -89,7 +86,7 @@ class AuthController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
+        $request->session()->regenerateToken();
         return redirect('/');
     }
 
