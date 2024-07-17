@@ -40,24 +40,18 @@
                                                 <td>{{ $data_pernyataan_admin->kode_pernyataan }}</td>
                                                 <td>{{ $data_pernyataan_admin->pernyataan }}</td>
                                                 <td>
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-primary dropdown-toggle"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            Action
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="#/edit">
-                                                                <i class="fas fa-edit"></i> Edit
-                                                            </a>
-                                                            <form action="#" method="POST" class="d-inline">
-                                                                @csrf
-                                                                <button class="dropdown-item" onclick="#">
-                                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                                    <a class="btn btn-primary active"
+                                                        data-kode_pernyataan="{{ $data_pernyataan_admin->kode_pernyataan }}"
+                                                        data-pernyataan="{{ $data_pernyataan_admin->pernyataan }}"
+                                                        data-toggle="modal" data-target="#modal-edit">edit</a>
+                                                    <form
+                                                        action="{{ route('admin.pernyataan.destroy', $data_pernyataan_admin->kode_pernyataan) }}"
+                                                        method="POST" class="d-inline">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button class="btn btn-sm btn-danger btn-delete" type="submit"
+                                                            onclick="return confirm('Yakin akan menghapus data?')">Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -77,4 +71,18 @@
         }
     </script>
     @include('Admin.pernyataan.create')
+    @include('Admin.pernyataan.edit')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('#modal-edit').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var kode = button.data('kode_pernyataan');
+            var pernyataan = button.data('pernyataan');
+
+            var modal = $(this);
+            modal.find('.modal-body #kode_pernyataan').val(kode);
+            modal.find('.modal-body #pernyataan').val(pernyataan);
+        });
+    </script>
 @endsection

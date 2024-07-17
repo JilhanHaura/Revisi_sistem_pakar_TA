@@ -98,10 +98,10 @@
                                                 <label for="password" class="d-block">Password</label>
                                                 <input id="password" type="password" class="form-control pwstrength"
                                                     data-indicator="pwindicator" name="password">
-                                                <div id="pwindicator" class="pwindicator">
+                                                {{-- <div id="pwindicator" class="pwindicator">
                                                     <div class="bar"></div>
                                                     <div class="label"></div>
-                                                </div>
+                                                </div> --}}
                                                 @error('password')
                                                     <span class="text-red-600">{{ $message }}</span>
                                                 @enderror
@@ -123,8 +123,7 @@
                                             Register
                                         </button>
                                         <div class="mt-5 text-muted text-center">
-                                            Already have on Account? <a href="{{ route('login') }}">Create
-                                                Account</a>
+                                            Already have on Account? <a href="{{ route('login') }}">Login</a>
                                         </div>
 
                                     </div>

@@ -78,16 +78,19 @@ class RuleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRuleRequest $request, Rule $rule)
-    {
-        //
+    public function update(UpdateRuleRequest $request, $rule){
+            $per =Rule::findOrFail($request->rule);
+            $per->update($request->all());
+
+            return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rule $rule)
+    public function destroy($rule)
     {
-        //
+        Rule::where('rule', $rule)->delete();
+        return redirect()->route('admin/rule')->with('pesan','data berhasil dihapus');
     }
 }

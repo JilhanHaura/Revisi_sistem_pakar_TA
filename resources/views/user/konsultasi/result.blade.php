@@ -72,7 +72,8 @@
                             <tr>
                                 <th>Pernyataan</th>
                                 <th>Jawaban Anda</th> {{-- CF USER --}}
-                                <th>Nilai Dari Ahli</th> {{-- CF PAKAR --}}
+                                <th>Nilai Dari Ahli</th>
+                                {{-- CF PAKAR --}}
                                 <th>Hasil</th> {{-- CF[H,E] --}}
                             </tr>
                         </thead>

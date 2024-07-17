@@ -33,7 +33,7 @@
                                                     <th>Pernyataan</th>
                                                     <th>Nilai MB(H,E)</th>
                                                     <th>Nilai MD(H,E)</th>
-                                                    <th>Nilai CF</th>
+                                                    {{-- <th>Nilai CF</th> --}}
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -50,8 +50,8 @@
                                                         <td>{{ $basis_rule->data_pernyataan->pernyataan }}</td>
                                                         <td>{{ $basis_rule->nilai_mb }}</td>
                                                         <td>{{ $basis_rule->nilai_md }}</td>
-                                                        <td>{{ $basis_rule->nilai_cf }}</td>
-                                                        <td>
+                                                        {{-- <td>{{ $basis_rule->nilai_cf }}</td> --}}
+                                                        {{-- <td>
                                                             <div class="btn-group">
                                                                 <button type="button"
                                                                     class="btn btn-primary dropdown-toggle"
@@ -60,6 +60,15 @@
                                                                     Action
                                                                 </button>
                                                                 <div class="dropdown-menu">
+                                                                    <a class="btn btn-primary active"
+                                                                        data-rule="{{ $basis_rule->rule }}"
+                                                                        data-gejala_id="{{ $basis_rule->gejala_id }}"
+                                                                        data-pernyataan_id="{{ $basis_rule->pernyataan_id }}"
+                                                                        data-nilai_mb="{{ $basis_rule->nilai_mb }}"
+                                                                        data-nilai_md="{{ $basis_rule->nilai_md }}"
+                                                                        data-niali_cf="{{ $basis_rule->nilai_cf }}"
+                                                                        data-toggle="modal"
+                                                                        data-target="#modal-edit">edit</a>
                                                                     <form action="#" method="POST" class="d-inline">
                                                                         @csrf
                                                                         <button class="dropdown-item" onclick="#">
@@ -68,6 +77,25 @@
                                                                     </form>
                                                                 </div>
                                                             </div>
+                                                        </td> --}}
+                                                        <td>
+                                                            {{-- <a class="btn btn-primary active"
+                                                                data-rule="{{ $basis_rule->rule }}"
+                                                                data-gejala_id="{{ $basis_rule->gejala_id }}"
+                                                                data-pernyataan_id="{{ $basis_rule->pernyataan_id }}"
+                                                                data-nilai_mb="{{ $basis_rule->nilai_mb }}"
+                                                                data-nilai_md="{{ $basis_rule->nilai_md }}"
+                                                                data-niali_cf="{{ $basis_rule->nilai_cf }}"
+                                                                data-toggle="modal" data-target="#modal-edit">edit</a> --}}
+                                                            <form
+                                                                action="{{ route('admin.rule.destroy', $basis_rule->rule) }}"
+                                                                method="POST" class="d-inline">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button class="btn btn-sm btn-danger btn-delete"
+                                                                    type="submit"
+                                                                    onclick="return confirm('Yakin akan menghapus data?')">Delete</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -120,4 +148,26 @@
         });
     </script>
     @include('Admin.Rule.create')
+    @include('Admin.Rule.edit')
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> --}}
+    {{-- <script>
+        $('#modal-edit').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var rule = button.data('rule');
+            var gejala = button.data('gejala_id');
+            var pernyataan = button.data('pernyataan_id');
+            var nilai_mb = button.data('nilai_mb');
+            var nilai_md = button.data('nilai_md');
+            var nilai_cf = button.data('nilai_cf');
+
+            var modal = $(this);
+            modal.find('.modal-body #rule').val(rule);
+            modal.find('.modal-body #gejala_id').val(gejala_id);
+            modal.find('.modal-body #pernyataan_id').val(pernyataan_id);
+            modal.find('.modal-body #nilai_mb').val(nilai_mb);
+            modal.find('.modal-body #nilai_md').val(nilai_md);
+            modal.find('.modal-body #nilai_cf').val(nilai_cf);
+        });
+    </script> --}}
 @endsection

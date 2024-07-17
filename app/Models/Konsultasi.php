@@ -10,7 +10,7 @@ class Konsultasi extends Model
 {
     use HasFactory,HasUuids;
     protected $table = 'konsultasis';
-    protected $fillable=['user_id','nama','tanggal_konsultasi','hasil_skrinning','cf_max','pertanyaan_terpilih'];
+    protected $fillable=['user_id','nama','tanggal_konsultasi','hasil_skrinning','cf_max','pernyataan_terpilih'];
     // protected $fillable=['tanggal_konsultasi','hasil_skrinning','cf_max','pertanyaan_terpilih'];
 
 
@@ -22,7 +22,7 @@ class Konsultasi extends Model
     }
     public function user()
     {
-    return $this->belongsTo(User::class,'user_id','nik');
+    return $this->belongsTo(User::class,'user_id','nik','id');
     }
 
 

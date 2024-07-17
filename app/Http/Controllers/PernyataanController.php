@@ -54,22 +54,26 @@ class PernyataanController extends Controller
      */
     public function edit(Pernyataan $pernyataan)
     {
-        //
+        return view('admin.pernyataan.edit', compact('pernyataan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePernyataanRequest $request, Pernyataan $pernyataan)
+    public function update(UpdatePernyataanRequest $request, $kode_gejala)
     {
-        //
+            $per =Pernyataan::findOrFail($request->kode_pernyataan);
+            $per->update($request->all());
+
+            return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pernyataan $pernyataan)
+    public function destroy($pernyataan)
     {
-        //
+        Pernyataan::where('kode_pernyataan', $pernyataan)->delete();
+        return redirect()->route('admin/pernyataan')->with('pesan','data berhasil dihapus');
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_konsultasi');
             $table->text('hasil_skrinning');
             $table->text('cf_max');
-            $table->text('pertanyaan_terpilih');
+            $table->text('pernyataan_terpilih');
             $table->timestamps();
         });
     }

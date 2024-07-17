@@ -3,10 +3,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Riwayat User</h1>
+                <h1>History</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="/dashboard">Dashboard</a></div>
                     <div class="breadcrumb-item">History</div>
+
                 </div>
             </div>
             <div class="row">
@@ -25,28 +26,31 @@
                                             <th>Tanggal Lahir</th>
                                             <th>Alamat</th>
                                             <th>Email</th>
-                                            <th>Action</th>
+                                            {{-- <th>Action</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($historyAdmin as $data)
                                             @if ($data->type != 'admin')
                                                 <tr>
-                                                    <th scope="row"> {{ $loop->iteration }}</th>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $data->nik }}</td>
                                                     <td>{{ $data->nama_lengkap }}</td>
                                                     <td>{{ $data->tanggal_lahir }}</td>
                                                     <td>{{ $data->alamat }}</td>
                                                     <td>{{ $data->email }}</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-primary">
+                                                    {{-- <td>
+                                                        <a href="{{ route('admin.history.detail-history', ['nik' => $data->nik]) }}"
+                                                            class="btn btn-primary">
                                                             <i class="fas fa-eye"></i>
                                                         </a>
-                                                    </td>
+                                                    </td> --}}
                                                 </tr>
                                             @endif
                                         @endforeach
                                     </tbody>
+
+
                                 </table>
                             </div>
                         </div>

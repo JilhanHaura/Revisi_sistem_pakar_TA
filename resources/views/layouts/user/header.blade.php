@@ -30,11 +30,11 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{{ url('/') }}" class="nav-item nav-link active">Halaman Utama</a>
-                    <a href="#" class="nav-item nav-link">Tentang</a>
+                    <a href="{{ url('/user/about') }}" class="nav-item nav-link">Tentang</a>
                     <a href="{{ url('/user/konsultasi') }}" class="nav-item nav-link">Konsultasi</a>
                     <a href="{{ url('/user/history') }}" class="nav-item nav-link">History</a>
-                    <a href="#" class="nav-item nav-link">Jenis-Jenis Penyakit</a>
-                    <a href="#" class="nav-item nav-link">Kontak</a>
+                    <a href="{{ url('/user/jenispenyakit') }}" class="nav-item nav-link">Jenis-Jenis Penyakit</a>
+                    {{-- <a href="#" class="nav-item nav-link">Kontak</a> --}}
                     @auth
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle d-flex align-items-center"

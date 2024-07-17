@@ -5,7 +5,7 @@
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="/User/assets/img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" src="/User/assets/img/carousel-3.jpg" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-start">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="/User/assets/img/carousel-2.jpg" alt="Image">
+                    <img class="w-100" src="/User/assets/img/carousel-4.png" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-start">
@@ -59,15 +59,17 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-4 align-items-end mb-4">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded" src="/User/assets/img/about.jpg">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="width: 600px; height: auto;">
+                    <img class="img-fluid rounded" src="/User/assets/img/mental.jpg" style="width: 100%; height: auto;">
                 </div>
+
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                     <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Tentang Kami</p>
                     <h1 class="display-5 mb-4">Kami dapat membantu anda dalam deteksi dini pada kesehatan mental anda</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam
-                        et
-                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                    <p class="mb-4" style="text-align: justify">Layanan kami menggunakan teknologi sistem pakar yang
+                        canggih untuk membantu Anda dalam
+                        mendeteksi potensi masalah kesehatan mental sejak dini. Sistem pakar ini merupakan perangkat lunak
+                        yang dirancang untuk meniru kemampuan pengambilan keputusan seorang ahli di bidang kesehatan mental.
                     </p>
 
                     <div class="border rounded p-4">
@@ -85,33 +87,29 @@
                             </div>
                         </nav>
 
-                        <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-content" id="nav-tabContent" style="text-align: justify">
                             <div class="tab-pane fade show active" id="nav-story" role="tabpanel"
                                 aria-labelledby="nav-story-tab">
-                                <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                                    amet diam et eos labore.</p>
-                                <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos
-                                    labore.
-                                    Clita erat ipsum et lorem et sit</p>
+                                <p>Sistem pakar kesehatan mental kami dirancang untuk memberikan solusi yang cepat dan
+                                    akurat dalam mendeteksi masalah kesehatan mental. Dengan menggunakan basis data yang
+                                    komprehensif dan algoritma cerdas, kami dapat menyediakan penilaian awal yang bermanfaat
+                                    bagi pengguna.</p>
                             </div>
                             <div class="tab-pane fade" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
-                                <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                                    amet diam et eos labore.</p>
-                                <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos
-                                    labore.
-                                    Clita erat ipsum et lorem et sit</p>
+                                <p>Misi kami adalah untuk meningkatkan kesejahteraan mental masyarakat dengan menyediakan
+                                    alat deteksi dini yang mudah diakses dan dapat diandalkan. Kami berkomitmen untuk
+                                    mendukung kesehatan mental Anda melalui teknologi inovatif.</p>
                             </div>
                             <div class="tab-pane fade" id="nav-vision" role="tabpanel" aria-labelledby="nav-vision-tab">
-                                <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                                    amet diam et eos labore.</p>
-                                <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos
-                                    labore.
-                                    Clita erat ipsum et lorem et sit</p>
+                                <p>Visi kami adalah menjadi pemimpin dalam teknologi kesehatan mental, menyediakan solusi
+                                    yang membantu individu dalam memahami dan mengelola kondisi kesehatan mental mereka
+                                    dengan lebih baik.</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="" style="padding: 10px">
-                        <a href="/about" class="btn btn-primary animated slideInDown">Explore
+                        <a href="{{ url('/user/about') }}" class="btn btn-primary animated slideInDown">Explore
                             More</a>
                     </div>
                 </div>
@@ -126,7 +124,8 @@
                                 </div>
                                 <div class="ps-3">
                                     <h4>No Hidden Cost</h4>
-                                    <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                    <span>Layanan kami transparan tanpa biaya tersembunyi, memastikan Anda mendapatkan nilai
+                                        terbaik.</span>
                                 </div>
                                 <div class="border-end d-none d-lg-block"></div>
                             </div>
@@ -141,7 +140,8 @@
                                 </div>
                                 <div class="ps-3">
                                     <h4>Dedicated Team</h4>
-                                    <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                    <span>Tim kami berdedikasi untuk memberikan layanan terbaik, dengan profesional yang
+                                        berpengalaman di bidang kesehatan mental dan teknologi.</span>
                                 </div>
                                 <div class="border-end d-none d-lg-block"></div>
                             </div>
@@ -156,7 +156,8 @@
                                 </div>
                                 <div class="ps-3">
                                     <h4>24/7 Available</h4>
-                                    <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                    <span>Kami selalu tersedia 24/7 untuk mendukung Anda, kapan saja Anda membutuhkan
+                                        bantuan atau informasi terkait kesehatan mental.</span>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +213,7 @@
                     <p class="mb-4">Sistem Pakar Ini berfokus dalam kesehatan mental pada DASS-42 yaitu Depresi,
                         Kecemasan dan Stress
                     </p>
-                    <a class="btn btn-primary py-3 px-5" href="">Explore More</a>
+                    <a class="btn btn-primary py-3 px-5" href="{{ url('/user/jenispenyakit') }}">Explore More</a>
                 </div>
                 <div class="col-lg-6">
                     <div class="row g-4 align-items-center">
@@ -222,10 +223,10 @@
                                     <div class="feature-box border rounded p-4">
                                         <i class="fa fa-check fa-3x text-primary mb-3"></i>
                                         <h4 class="mb-3">DEPRESI</h4>
-                                        <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                                            duo
-                                            justo erat amet</p>
-                                        <a class="fw-semi-bold" href="">Read More <i
+                                        <p class="mb-3">Depresi adalah kondisi kesehatan mental yang ditandai dengan
+                                            perasaan sedih yang mendalam, kehilangan minat atau kesenangan dalam aktivitas
+                                            sehari-hari.</p>
+                                        <a class="fw-semi-bold" href="{{ url('/user/jenispenyakit') }}">Read More <i
                                                 class="fa fa-arrow-right ms-1"></i></a>
                                     </div>
                                 </div>
@@ -233,10 +234,9 @@
                                     <div class="feature-box border rounded p-4">
                                         <i class="fa fa-check fa-3x text-primary mb-3"></i>
                                         <h4 class="mb-3">ANXIETY</h4>
-                                        <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita
-                                            duo
-                                            justo erat amet</p>
-                                        <a class="fw-semi-bold" href="">Read More <i
+                                        <p class="mb-3">Kecemasan adalah respons alami tubuh terhadap stres. Ini adalah
+                                            perasaan takut atau khawatir tentang apa yang akan datang.</p>
+                                        <a class="fw-semi-bold" href="{{ url('/user/jenispenyakit') }}">Read More <i
                                                 class="fa fa-arrow-right ms-1"></i></a>
                                     </div>
                                 </div>
@@ -246,9 +246,9 @@
                             <div class="feature-box border rounded p-4">
                                 <i class="fa fa-check fa-3x text-primary mb-3"></i>
                                 <h4 class="mb-3">STRESS</h4>
-                                <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo
-                                    erat amet</p>
-                                <a class="fw-semi-bold" href="">Read More <i
+                                <p class="mb-3">Stres adalah respons tubuh terhadap tuntutan atau tekanan dari situasi
+                                    yang dianggap menantang atau mengancam. </p>
+                                <a class="fw-semi-bold" href="{{ url('/user/jenispenyakit') }}">Read More <i
                                         class="fa fa-arrow-right ms-1"></i></a>
                             </div>
                         </div>
@@ -261,7 +261,7 @@
 
 
     <!-- Callback Start -->
-    <div class="container-fluid callback my-5 pt-5">
+    {{-- <div class="container-fluid callback my-5 pt-5">
         <div class="container pt-5">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
@@ -310,6 +310,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Callback End -->
 @endsection

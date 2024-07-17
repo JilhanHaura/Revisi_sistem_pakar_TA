@@ -22,7 +22,7 @@
                 <table class="table table-hover">
                     <thead class="thead-light">
                         <tr>
-                            <th>ID</th>
+                            {{-- <th>ID</th> --}}
                             <th>NIK</th>
                             <th>Nama Lengkap</th>
                             <th>Tanggal Konsultasi</th>
@@ -34,7 +34,7 @@
                     <tbody>
                         @foreach ($history as $h)
                             <tr>
-                                <td>{{ $h->id }}</td>
+                                {{-- <td>{{ $h->id }}</td> --}}
                                 <td>{{ $h->user->nik }}</td>
                                 <td>{{ $h->user->nama_lengkap }}</td>
                                 <td>{{ $h->tanggal_konsultasi }}</td>

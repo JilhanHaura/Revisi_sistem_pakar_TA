@@ -57,22 +57,25 @@ class GejalaController extends Controller
      */
     public function edit(Gejala $gejala)
     {
-        //
+        return view('admin.gejala.edit', compact('gejala'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateGejalaRequest $request, Gejala $gejala)
+
+
+    public function update(UpdateGejalaRequest $request, $kode_gejala)
     {
-        //
+            $gejala =Gejala::findOrFail($request->kode_gejala);
+            $gejala->update($request->all());
+
+            return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Gejala $gejala)
+    public function destroy($kode_gejala)
     {
-        //
+        Gejala::where('kode_gejala', $kode_gejala)->delete();
+        return redirect('/admin/gejala')->with('Pesan', 'Data berhasil dihapus');
     }
 }

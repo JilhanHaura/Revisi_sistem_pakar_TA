@@ -24,14 +24,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function adminHome()
+    public function about()
     {
-        $totalUser=User::count();
-        $totalRule=Rule::count();
-        $totalGejala=Gejala::count();
-        $totalPernyataan=Pernyataan::count();
-        return view('dashboard',compact('totalUser','totalRule','totalGejala','totalPernyataan'));
-        // return view('dashboard');
+        return view('user.about.index');
+    }
+    public function kind()
+    {
+        return view('user.jenisPenyakit.index');
     }
     public function history(){
         $userId = Auth::id();
@@ -45,59 +44,8 @@ class HomeController extends Controller
         $result = session('result');
         dd($result);
         return view('user/history/show', compact('konsultasi', 'result'));
-    }
-
-    public function historyAdmin(){
-        $historyAdmin = User::all();
-        // dd($history);
-        return view('Admin.history.index', compact('historyAdmin'));
-    }
-
-    /**
+    }   /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreHomeRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    // public function show(Home $home)
-    // {
-    //     //
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Home $home)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateHomeRequest $request, Home $home)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Home $home)
-    {
-        //
-    }
 }

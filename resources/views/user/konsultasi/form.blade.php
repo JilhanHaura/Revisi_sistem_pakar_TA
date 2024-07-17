@@ -15,6 +15,13 @@
     <!-- Page Header End -->
     <div class="row" style="padding-left: 30px; padding-right: 30px;">
         <div class="col-12" style="padding-bottom: 20px">
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    <ul>
+                        {{ session('error') }}
+                    </ul>
+                </div>
+            @endif
             <div class="card card-primary">
                 <div class="card-header">
                     <h4 style="text-align: center">Silahkan Mengisi Data Diri Sebelum Konsultasi</h4>
@@ -69,9 +76,9 @@
                                             <select name="skrinning[]" id=""
                                                 class="form-control form-control-sm red-border">
                                                 <option value="{{ $value->id }}_0">tidak pernah</option>
-                                                <option value="{{ $value->id }}_1">kadang-kadang</option>
+                                                <option value="{{ $value->id }}_1">Jarang</option>
                                                 <option value="" selected>Tidak tahu</option>
-                                                <option value="{{ $value->id }}_2">Jarang</option>
+                                                <option value="{{ $value->id }}_2">Kadang-kadang</option>
                                                 <option value="{{ $value->id }}_3">Sering</option>
                                             </select>
                                             {{-- @dd($value) --}}
@@ -90,9 +97,9 @@
                                             <select name="skrinning[]" id=""
                                                 class="form-control form-control-sm red-border">
                                                 <option value="{{ $value->id }}_0">tidak pernah</option>
-                                                <option value="{{ $value->id }}_1">kadang-kadang</option>
+                                                <option value="{{ $value->id }}_1">Jarang</option>
                                                 <option value="" selected>Tidak tahu</option>
-                                                <option value="{{ $value->id }}_2">Jarang</option>
+                                                <option value="{{ $value->id }}_2">Kadang-kadang</option>
                                                 <option value="{{ $value->id }}_3">Sering</option>
                                             </select>
                                         </div>

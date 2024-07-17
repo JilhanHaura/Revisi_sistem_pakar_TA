@@ -9,6 +9,7 @@ use App\Models\Auth;
 use App\Models\Pernyataan;
 use App\Models\Rule;
 use Illuminate\Support\Arr;
+use Carbon\Carbon;
 class KonsultasiController extends Controller
 {
     /**
@@ -43,6 +44,28 @@ class KonsultasiController extends Controller
             'tanggal_konsultasi' => 'required',
             'skrinning'=>'required|array',
         ]);
+        // Ambil data konsultasi terakhir pengguna
+        $lastConsultation = Konsultasi::where('user_id', $request->user_id)
+        ->orderBy('created_at', 'desc')
+        ->first();
+
+        // Periksa apakah ada konsultasi sebelumnya
+        if ($lastConsultation) {
+        // Hitung selisih waktu antara sekarang dengan konsultasi terakhir
+            $waktuTerakhir = Carbon::parse($lastConsultation->created_at);
+            $sekarang = Carbon::now();
+            $selisihHari = $sekarang->diffInDays($waktuTerakhir);
+            $hariYangTersisa = 7 - $selisihHari;
+
+            // Tentukan pesan error berdasarkan hari yang tersisa
+            $errorMessage = 'Anda hanya dapat melakukan konsultasi kembali setelah ' . $hariYangTersisa . ' hari.';
+
+        // Jika selisih waktu kurang dari 7 hari (1 minggu), kembalikan pengguna dengan pesan error
+        if ($selisihHari < 7) {
+            return redirect()->back()->with('error', $errorMessage);
+        }
+    }
+
             $skrinnings = array_filter($request->get('skrinning'));
             $skrinnings= array_map(fn($value)=>['id'=>explode('_',$value)[0],'value'=>explode('_',$value)[1]],$skrinnings);
 
@@ -72,10 +95,10 @@ class KonsultasiController extends Controller
                         $label='tidak pernah';
                         break;
                     case '1':
-                        $label='kadang-kadang';
+                        $label='jarang';
                         break;
                     case '2':
-                        $label='jarang';
+                        $label='kadang-kadang';
                         break;
                     case '3':
                         $label='sering';
@@ -118,13 +141,13 @@ class KonsultasiController extends Controller
                 ...$result['data'],
                 'hasil_skrinning'=>$output[0]['combine'][0]['gejala']['nama_gejala'],
                 'cf_max'=>$output[0]['hasil'],
-                'pertanyaan_terpilih'=>Arr::join(array_map(fn($v)=>$v['data_pernyataan']['pernyataan'],$rules->toArray()),', ')
+                'pernyataan_terpilih'=>Arr::join(array_map(fn($v)=>$v['data_pernyataan']['pernyataan'],$rules->toArray()),', ')
 
             ];
     // dd($output);
             $konsultasi = Konsultasi::create($payload);
             session()->flash('result', $result);
-            return redirect()->route('user/konsultasi/result', $konsultasi->id);
+            return redirect()->route('user/konsultasi/note', $konsultasi->id);
             // Konsultasi::create($payload);
             // return view('User.konsultasi.result',compact('result'));
     }
@@ -136,89 +159,6 @@ class KonsultasiController extends Controller
     if (!$result) {
         return redirect()->route('user/konsultasi');
     }
-    return view('User/konsultasi/result', compact('result'));
+    return view('User/konsultasi/note', compact('result'));
     }
 }
-
- //     public function store(StoreKonsultasiRequest $request)
-// {
-//     $validateData = $request->validate([
-//         'user_id' => 'required',
-//         'nama' => 'required',
-//         'tanggal_konsultasi' => 'required',
-//         'skrinning' => 'required|array',
-//     ]);
-
-//     $skrinnings = array_filter($request->get('skrinning'));
-//     $skrinnings = array_map(fn($value) => [
-//         'id' => explode('_', $value)[0],
-//         'value' => explode('_', $value)[1]
-//     ], $skrinnings);
-
-//     $rules = Rule::whereIn('pernyataan_id', array_map(fn($value) => $value['id'], $skrinnings))->get();
-//     $output = [];
-//     $input = [];
-//     $inputPernyataan = [];
-
-//     foreach ($rules as $rule) {
-//         if (!in_array($rule->data_pernyataan->id, $inputPernyataan)) {
-//             $inputPernyataan[] = $rule->data_pernyataan->pernyataan_id;
-
-//             $cfUser = Arr::first($skrinnings, fn($v) => $v['id'] == $rule->data_pernyataan->id)['value'];
-//             $cfHasil = floatval($cfUser) * floatval($rule->nilai_cf);
-
-//             $output[$rule->data_gejala->kode_gejala]['combine'][] = [
-//                 'pernyataan' => $rule->data_pernyataan,
-//                 'gejala' => $rule->data_gejala,
-//                 'input' => $cfUser,
-//                 'expert' => $rule->nilai_cf,
-//                 'hasil' => $cfHasil,
-//             ];
-
-//             $label = match ($cfUser) {
-//                 '0' => 'tidak pernah',
-//                 '1' => 'kadang-kadang',
-//                 '2' => 'mungkin',
-//                 '3' => 'sangat sesuai',
-//                 default => ''
-//             };
-
-//             if (!in_array($rule->data_pernyataan->kode_pernyataan . ' - ' . $rule->data_pernyataan->pernyataan, array_column($input, 'pernyataan'))) {
-//                 $input[] = [
-//                     'pernyataan' => $rule->data_pernyataan->kode_pernyataan . ' - ' . $rule->data_pernyataan->pernyataan,
-//                     'label' => $label,
-//                     'hasil' => $cfUser
-//                 ];
-//             }
-//         }
-//     }
-
-//     foreach ($output as $key => $value) {
-//         $combine1 = $output[$key]['combine'][0]['hasil'] ?? 0;
-//         for ($j = 1; $j < count($output[$key]['combine']); $j++) {
-//             $combine2 = $output[$key]['combine'][$j]['hasil'] ?? 0;
-//             $combine1 = $combine1 + $combine2 * (1 - $combine1);
-//         }
-//         $output[$key]['hasil'] = $combine1;
-//     }
-
-//     $output = array_values(Arr::sortDesc($output, fn($value) => $value['hasil']));
-
-//     $result = [
-//         'data' => Arr::except($validateData, 'skrinning'),
-//         'output' => $output,
-//         'input' => $input
-//     ];
-
-//     $payload = [
-//         ...$result['data'],
-//         'hasil_skrinning' => $output[0]['combine'][0]['gejala']['nama_gejala'],
-//         'cf_max' => $output[0]['hasil'],
-//         'pertanyaan_terpilih' => Arr::join(array_map(fn($v) => $v['data_pernyataan']['pernyataan'], $rules->toArray()), ', ')
-//     ];
-
-//     $konsultasi = Konsultasi::create($payload);
-//     session()->flash('result', $result);
-
-//     return redirect()->route('user/konsultasi/result', $konsultasi->id);
-// }
