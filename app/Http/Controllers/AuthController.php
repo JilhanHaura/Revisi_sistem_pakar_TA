@@ -27,37 +27,63 @@ class AuthController extends Controller
         return view('auth/register');
     }
 
-    public function registerSave(Request $request){
-        Validator::make($request->all(), [
+      public function registerSave(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'nik' => 'required|digits:16',
             'nama_lengkap' => 'required',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed'
-        ])->after(function ($validator) use ($request) {
+        ]);
+
+        $validator->after(function ($validator) use ($request) {
             $birthDate = Carbon::parse($request->input('tanggal_lahir'));
             $age = $birthDate->age;
 
             if ($age < 15 || $age > 100) {
-                $validator->errors()->add('tanggal_lahir', 'Usia harus lebih dari 15 tahun ');
+                $validator->errors()->add('tanggal_lahir', 'Usia harus lebih dari 15 tahun');
             }
-        })->validate();
 
-        $user =User::create([
-            'nik'=>$request->nik,
-            'nama_lengkap'=>$request->nama_lengkap,
-            'tanggal_lahir'=>$request->tanggal_lahir,
-            'alamat'=>$request->alamat,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'type'=>"0"
+            if (User::where('nik', $request->input('nik'))->exists()) {
+                $validator->errors()->add('nik', 'NIK sudah terdaftar.');
+            }
+            if (User::where('email', $request->input('email'))->exists()) {
+                $validator->errors()->add('email', 'Email sudah terdaftar.');
+            }
+
+        });
+        if ($validator->fails()) {
+           if ($validator->errors()->has('email')) {
+                $request->merge(['email' => '']);
+            }
+            if ($validator->errors()->has('nik')) {
+                $request->merge(['nik' => '']);
+            }
+            if ($validator->errors()->has('tanggal_lahir')) {
+                $request->merge(['tanggal_lahir' => '']);
+            }
+
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput();
+        }
+
+        $user = User::create([
+            'nik' => $request->nik,
+            'nama_lengkap' => $request->nama_lengkap,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'type' => "0"
         ]);
-        // return redirect()->route('login');
-        // return ($request);
+
         event(new Registered($user));
         auth()->login($user);
-        return redirect()->route('verification.notice')->with('sukses','akun berhasil dibuat, silahkan verifikasi email anda');
+
+        return redirect()->route('verification.notice')->with('sukses', 'Akun berhasil dibuat, silahkan verifikasi email Anda');
     }
     public function login(){
         return view('auth/login');

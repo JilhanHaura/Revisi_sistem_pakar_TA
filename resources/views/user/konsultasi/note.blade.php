@@ -30,102 +30,185 @@
                 </div>
             </div>
             <div class="col-12" style="padding: 5px">
-                <div class="row align-items-center">
-                    <div class="col-6">
+                <div class="row d-flex justify-content-around">
+                    <div class="col">
                         <div class="alert alert-success" style="margin-left:30px">
                             <h5 class="font-weight-bold" style="text-align: center">Kesimpulan</h5>
-                            <p style="text-align: justify">Berdasarkan dari Pernyataan yang kamu pilih atau alami dan juga
-                                berdasarkan Role/Basis aturan
-                                yang sudah ditentukan oleh seorang pakar maka perhitungan Algoritma Certainty Factor
-                                mengambil nilai CF yang paling tinggi yakni
-                                <b>{{ number_format($result['output'][0]['hasil'], 1) }}
-                                    ({{ number_format($result['output'][0]['hasil'], 1) * 10 }}%)</b>
-                                yaitu <b>{{ $result['output'][0]['combine'][0]['gejala']['nama_gejala'] }}</b>
-                            </p>
+                            @if (number_format($result['output'][0]['hasil'], 1) * 10 == 0)
+                                <p style="text-align: justify"> Berdasarkan dari Pernyataan yang kamu pilih atau alami dan
+                                    juga berdasarkan Role/Basis
+                                    aturan
+                                    yang sudah ditentukan oleh seorang pakar maka perhitungan Algoritma Certainty Factor
+                                    mengambil nilai CF yang paling tinggi yakni
+                                    <b>{{ number_format($result['output'][0]['hasil'], 1) }}
+                                        ({{ number_format($result['output'][0]['hasil'], 1) * 10 }}%)</b>
+                                    yaitu <b>Normal<b>
+                                </p>
+                            @else
+                                <p>{{ $result['output'][0]['combine'][0]['gejala']['nama_gejala'] }}</p>
+                                <p style="text-align: justify">
+                                    Berdasarkan dari Pernyataan yang kamu pilih atau alami dan juga berdasarkan Role/Basis
+                                    aturan
+                                    yang sudah ditentukan oleh seorang pakar maka perhitungan Algoritma Certainty Factor
+                                    mengambil nilai CF yang paling tinggi yakni
+                                    <b>{{ number_format($result['output'][0]['hasil'], 1) }}
+                                        ({{ number_format($result['output'][0]['hasil'], 1) * 10 }}%)</b>
+                                    yaitu <b>{{ $result['output'][0]['combine'][0]['gejala']['nama_gejala'] }}</b>
+                                </p>
+                            @endif
                         </div>
                     </div>
-                    <div class="col-6" style="width: 500px; height: 500px; overflow: hidden; margin-left:100px">
-                        @php
-                            $image = $result['output'][0]['combine'][0]['gejala']['nama_gejala'];
-                        @endphp
-                        @if ($image == 'Stress')
-                            <img src="/User/assets/img/illustrasi-stress.png" alt="stress"
-                                style="max-width:100%; height:auto;">
-                        @elseif ($image == 'Anxiety')
-                            <img src="/User/assets/img/illusrasi-anxiety.png" alt="anxiety"
-                                style="max-width:100%; height:auto;">
-                        @else
-                            <img src="/User/assets/img/ilustrasi-depresi.jpg" alt="depresi"
-                                style="max-width:100%; height:auto;">
-                        @endif
+                    <div class="col d-flex justify-content-center">
+                        <div style="width: 500px; height: 500px; overflow: hidden;">
+                            @php
+                                $image = $result['output'][0]['combine'][0]['gejala']['nama_gejala'];
+                            @endphp
+                            @if (number_format($result['output'][0]['hasil'], 1) * 10 == 0)
+                                <img src="/User/assets/img/sehat.png" alt="normal" style="max-width:100%; height:auto;">
+                            @elseif ($image == 'Stress')
+                                <img src="/User/assets/img/illustrasi-stress.png" alt="stress"
+                                    style="max-width:100%; height:auto;">
+                            @elseif ($image == 'Anxiety')
+                                <img src="/User/assets/img/illusrasi-anxiety.png" alt="anxiety"
+                                    style="max-width:100%; height:auto;">
+                            @else
+                                <img src="/User/assets/img/ilustrasi-depresi.jpg" alt="depresi"
+                                    style="max-width:100%; height:auto;">
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12">
-                @if (!empty($result['output']))
-                    <div class="card card-body p-0 border" style="box-shadow: none !important;">
-                        <div class="card-header bg-primary text-white p-2">
-                            <h6 class="font-weight-bold text-white p-2">Pananganan Awal atau Solusi </h6>
+            @if (number_format($result['output'][0]['hasil'], 1) * 10 == 0)
+                <div class="col-12">
+                    @if (!empty($result['output']))
+                        <div class="card card-body p-0 border" style="box-shadow: none !important;">
+                            <div class="card-header bg-primary text-white p-2">
+                                <h6 class="font-weight-bold text-white p-2">Pananganan Awal atau Solusi </h6>
+                            </div>
+                            <p style="text-align: justify; padding:20px;">Tidak Ada Solusi</p>
                         </div>
-                        @php
-                            $nilaiHasil = number_format($result['output'][0]['hasil'], 1) * 10;
-                        @endphp
-                        @if ($nilaiHasil > 20)
-                            <p style="text-align: justify; padding:20px;">Silahkan Konsultasikan Secara Langsung Ke
-                                Psikolog Terdekat Anda Untuk Lebih
-                                Lanjutnya</p>
-                        @else
-                            <p style="text-align: justify; padding:20px;"><strong>1. Menarik napas dalam </strong><br>
-                                Saat menarik napas dalam-dalam, tubuh menjadi lebih rileks dan aktivitas saraf penyebab
-                                kecemasan di otak dapat berkurang. Ada pula teknik pernapasan yang bisa Anda lakukan
-                                sebagai
-                                cara mengatasi gangguan kecemasan.
-                                <br>
-                                Caranya, tarik napas selama 4 detik, kemudian tahan selama 7 detik, lalu lepaskan
-                                kembali
-                                perlahan-lahan dalam 8 detik. Lakukan beberapa kali hingga pikiran lebih tenang.
-                                <br>
-                                <strong> 2. Memusatkan pikiran pada aktivitas yang dijalani </strong><br>
-                                Ketika merasa cemas, fokus Anda akan terganggu. Jika ini terjadi, cobalah untuk kembali
-                                fokus
-                                pada hal yang akan dilakukan, misalnya jika ada jadwal membersihkan rumah, lakukanlah.
-                                Jika ada
-                                jadwal berkumpul dengan teman-teman, pergilah.
-                                <br>
-                                Duduk diam tanpa melakukan apa pun dan hanya fokus pada kekhawatiran tentang hal-hal
-                                yang
-                                mungkin terjadi justru akan memperburuk rasa cemas.
-                                <br>
-                                <strong> 3. Menerapkan metode 5-4-3-2-1 </strong> <br>
-                                Saat gangguan kecemasan menyerang, lihatlah lingkungan sekitar dan sebutkan 5 benda yang
-                                ada di
-                                sekeliling Anda. Selanjutnya, sebutkan 4 benda yang bisa Anda sentuh. Setelah itu, diam
-                                sejenak dan sebutkan 3 suara yang Anda dengar.
-                                <br>
-                                Lanjutkan dengan menyebutkan 2 bau yang bisa Anda hirup. Terakhir, kenali 1 rasa yang
-                                ada di
-                                lidah Anda. Cara mengatasi gangguan kecemasan yang satu ini diyakini dapat menghentikan
-                                pikiran
-                                negatif yang membuat Anda gelisah.
-                                <br>
-                                <strong> 4. Menghindari minuman berkafein dan beralkohol </strong> <br>
-                                Cara mengatasi gangguan kecemasan berikutnya adalah dengan menghindari konsumsi
-                                minuman
-                                beralkohol
-                                dan berkafein. Alkohol memang dapat memberikan efek rileks dalam jangka pendek.
-                                Namun,
-                                jika
-                                dikonsumsi terlalu sering atau berlebihan, alkohol justru dapat memperparah gangguan
+                    @else
+                        <div class="alert alert-warning">
+                            <p>No data available</p>
+                        </div>
+                    @endif
+                </div>
+            @else
+                <div class="col-12">
+                    @if (!empty($result['output']))
+                        <div class="card card-body p-0 border" style="box-shadow: none !important;">
+                            <div class="card-header bg-primary text-white p-2">
+                                <h6 class="font-weight-bold text-white p-2">Pananganan Awal atau Solusi </h6>
+                            </div>
+                            @php
+                                $nilaiHasil = number_format($result['output'][0]['hasil'], 1) * 10;
+                                $gejala = $result['output'][0]['combine'][0]['gejala']['nama_gejala'];
+                            @endphp
+                            @if ($nilaiHasil > 20 && $gejala == 'Depresi')
+                                <p style="text-align: justify; padding:20px;">Silahkan Konsultasikan Secara Langsung Ke
+                                    Psikolog Terdekat Anda Untuk Lebih
+                                    Lanjutnya</p>
+                            @elseif ($gejala == 'Depresi')
+                                <p style="text-align: justify; padding:20px;">
+                                    Dikutip dari jurnal <em>Depresi: Ciri, Penyebab dan Penangannya </em>Oleh: Aries
+                                    Dirgayunita<br>
+                                    Depresi dapat ditangani dengan perubahan pola
+                                    hidup, terapi psikologi, dan pengobatan (obat antiretroviral/ARV). Jangan mengobati diri
+                                    sendiri dengan alkohol, merokok berlebihan, atau narkoba karena dapat memperparah
+                                    depresi
+                                    dan menimbulkan masalah lain. Berikut beberapa cara penanganan depresi:
+                                    <br><br>
+                                    <strong>1. Perubahan Pola Hidup</strong>
+                                    <br>
+                                    a. Berolahraga: Menghasilkan pikiran dan perasaan positif yang menghalangi mood negatif.
+                                    <br>
+                                    b. Mengatur Pola Makan: Hindari kafein, sukrosa (gula), dan pastikan keseimbangan
+                                    nutrisi.
+                                    <br>
+                                    c. Berdoa: Mencari kekuatan dan hiburan dengan berdoa dan bersyukur kepada Tuhan YME.
+                                    <br>
+                                    d. Memiliki Keberanian untuk Berubah: Melewati kegelapan menuju terang dan berubah.
+                                    <br>
+                                    e. Rekreasi: Berjalan-jalan di tempat asri, melakukan aktivitas yang disukai untuk
+                                    rileks
+                                    dan nyaman.
+                                </p>
+                            @endif
+                            @if ($nilaiHasil > 14 && $gejala == 'Anxiety')
+                                <p style="text-align: justify; padding:20px;">Silahkan Konsultasikan Secara Langsung Ke
+                                    Psikolog Terdekat Anda Untuk Lebih
+                                    Lanjutnya</p>
+                            @elseif ($gejala == 'Anxiety')
+                                <p style="text-align: justify; padding:20px;">Dikutip dari jurnal yang berjudul <em>Upaya
+                                        Mengatasi Anxiety Disorder pada Mahasiswa Kedokteran Universitas Sebelas Maret</em>
+                                    oleh
+                                    Annisa Salsabila Shofiyah Syarif:
+                                    <strong>1. Menyelesaikan Tugas dengan
+                                        Sebaik-baiknya</strong><br>
+                                    Mengatasi kecemasan dengan fokus pada menyelesaikan tugas akademik dengan sebaik-baiknya
+                                    dapat membantu mengurangi kecemasan yang berlebihan.
+                                    <br><br>
+                                    <strong>2. Memperbanyak Ibadah</strong><br>
+                                    Meningkatkan frekuensi ibadah dapat memberikan ketenangan batin dan mengurangi rasa
+                                    cemas.
+                                    <br><br>
+                                    <strong>3. Berdoa dan Meminta Doa pada Orangtua</strong><br>
+                                    Berdoa dan meminta doa dari orangtua dapat memberikan kekuatan dan ketenangan dalam
+                                    menghadapi kecemasan.
+                                    <br><br>
+                                    <strong>4. Tidur untuk Melupakan Masalah</strong><br>
+                                    Tidur yang cukup dapat membantu meredakan kecemasan dengan memberikan waktu bagi tubuh
+                                    dan
+                                    pikiran untuk beristirahat.
+                                </p>
+                            @endif
+                            @if ($nilaiHasil > 25 && $gejala == 'Stress')
+                                <p style="text-align: justify; padding:20px;">Silahkan Konsultasikan Secara Langsung Ke
+                                    Psikolog Terdekat Anda Untuk Lebih
+                                    Lanjutnya</p>
+                            @elseif ($gejala == 'Stress')
+                                Oleh: P2PTM Kemenkes RI<br>
+                                <strong>1. Bicarakan Keluhan dengan Seseorang yang Dapat Dipercaya</strong><br>
+                                Mengungkapkan kecemasan kepada seseorang yang dapat dipercaya dapat membantu meringankan
+                                beban
+                                dan menemukan solusi.
+                                <br><br>
+                                <strong>2. Melakukan Kegiatan Sesuai Minat dan Kemampuan</strong><br>
+                                Melakukan kegiatan yang sesuai dengan minat dan kemampuan dapat mengalihkan pikiran dari
+                                kecemasan dan memberikan perasaan pencapaian.
+                                <br><br>
+                                <strong>3. Kembangkan Hobi yang Bermanfaat</strong><br>
+                                Mengembangkan hobi yang bermanfaat dapat menjadi cara efektif untuk mengurangi kecemasan dan
+                                meningkatkan kesejahteraan.
+                                <br><br>
+                                <strong>4. Meningkatkan Ibadah dan Mendekatkan Diri pada Tuhan</strong><br>
+                                Meningkatkan frekuensi ibadah dan mendekatkan diri pada Tuhan dapat memberikan ketenangan
+                                batin
+                                dan mengurangi rasa cemas.
+                                <br><br>
+                                <strong>5. Berpikir Positif</strong><br>
+                                Berpikir positif dapat membantu mengatasi pikiran negatif yang memicu kecemasan.
+                                <br><br>
+                                <strong>6. Tenangkan Pikiran dengan Relaksasi</strong><br>
+                                Teknik relaksasi seperti meditasi atau pernapasan dalam dapat menenangkan pikiran dan
+                                mengurangi
                                 kecemasan.
-                            </p>
-                        @endif
-                    </div>
-                @else
-                    <div class="alert alert-warning">
-                        <p>No data available</p>
-                    </div>
-                @endif
-            </div>
+                                <br><br>
+                                <strong>7. Jagalah Kesehatan dengan Olahraga</strong><br>
+                                Olahraga teratur, tidur cukup, makan makanan bergizi seimbang, dan menjaga kebersihan dapat
+                                membantu mengelola kecemasan dan meningkatkan kesehatan secara keseluruhan.
+                                </p>
+                            @endif
+                        </div>
+                    @else
+                        <div class="alert alert-warning">
+                            <p>No data available</p>
+                        </div>
+                    @endif
+                </div>
+            @endif
+            <br>
             <div class="col-12">
                 <div class="card card-body p-0 border" style="box-shadow: none !important;">
                     <div class="card-header bg-primary text-white p-2">

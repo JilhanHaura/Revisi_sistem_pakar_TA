@@ -116,14 +116,18 @@
                     </form>
                 </div>
             </div>
-            <div class="col-6 mt-3" style="padding: 10px">
+            <div class="col-12 mt-3" style="padding: 10px">
                 <div class="row">
                     <div class="alert alert-info">
-                        <h5 class="font-weight-bold"><strong>Keterangan:</strong> </h5>
-                        <p>0: Tidak Pernah</p>
-                        <p>1: Kadang-Kadang</p>
-                        <p>2: Jarang</p>
-                        <p>3: Sering</p>
+                        <h5 class="font-weight-bold" style="text-align: center"><strong>Keterangan:</strong> </h5>
+                        <p><b>Tidak Pernah :</b> Anda tidak pernah mengalami gejala yang disebutkan dalam pernyataan selama
+                            minggu
+                            terakhir. </p>
+                        <p><b>Kadang-Kadang :</b> Anda mengalami gejala tersebut sesekali atau dalam situasi tertentu</p>
+                        <p><b>Jarang :</b> Anda mengalami gejala tersebut beberapa kali dalam minggu terakhir.</p>
+                        <p><b>Sering : </b> mengalami gejala tersebut hampir setiap hari atau pada sebagian besar waktu
+                            selama
+                            minggu terakhir.</p>
                     </div>
                 </div>
             </div>

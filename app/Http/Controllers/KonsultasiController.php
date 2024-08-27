@@ -44,27 +44,20 @@ class KonsultasiController extends Controller
             'tanggal_konsultasi' => 'required',
             'skrinning'=>'required|array',
         ]);
-        // Ambil data konsultasi terakhir pengguna
-        $lastConsultation = Konsultasi::where('user_id', $request->user_id)
-        ->orderBy('created_at', 'desc')
-        ->first();
+        // $lastConsultation = Konsultasi::where('user_id', $request->user_id)
+        // ->orderBy('created_at', 'desc')
+        // ->first();
 
-        // Periksa apakah ada konsultasi sebelumnya
-        if ($lastConsultation) {
-        // Hitung selisih waktu antara sekarang dengan konsultasi terakhir
-            $waktuTerakhir = Carbon::parse($lastConsultation->created_at);
-            $sekarang = Carbon::now();
-            $selisihHari = $sekarang->diffInDays($waktuTerakhir);
-            $hariYangTersisa = 7 - $selisihHari;
-
-            // Tentukan pesan error berdasarkan hari yang tersisa
-            $errorMessage = 'Anda hanya dapat melakukan konsultasi kembali setelah ' . $hariYangTersisa . ' hari.';
-
-        // Jika selisih waktu kurang dari 7 hari (1 minggu), kembalikan pengguna dengan pesan error
-        if ($selisihHari < 7) {
-            return redirect()->back()->with('error', $errorMessage);
-        }
-    }
+        // if ($lastConsultation) {
+        //     $waktuTerakhir = Carbon::parse($lastConsultation->created_at);
+        //     $sekarang = Carbon::now();
+        //     $selisihHari = $sekarang->diffInDays($waktuTerakhir);
+        //     $hariYangTersisa = 7 - $selisihHari;
+        //     $errorMessage = 'Anda hanya dapat melakukan konsultasi kembali setelah ' . $hariYangTersisa . ' hari.';
+        //     if ($selisihHari < 7) {
+        //     return redirect()->back()->with('error', $errorMessage);
+        //     }
+        // }
 
             $skrinnings = array_filter($request->get('skrinning'));
             $skrinnings= array_map(fn($value)=>['id'=>explode('_',$value)[0],'value'=>explode('_',$value)[1]],$skrinnings);
@@ -137,9 +130,13 @@ class KonsultasiController extends Controller
                 'output'=>$output,
                 'input'=>$input
             ];
+            $hasilSkrinning = $output[0]['combine'][0]['gejala']['nama_gejala'];
+            if ($output[0]['hasil'] == 0) {
+                $hasilSkrinning = 'Normal';
+            }
             $payload=[
                 ...$result['data'],
-                'hasil_skrinning'=>$output[0]['combine'][0]['gejala']['nama_gejala'],
+                'hasil_skrinning'=> $hasilSkrinning,
                 'cf_max'=>$output[0]['hasil'],
                 'pernyataan_terpilih'=>Arr::join(array_map(fn($v)=>$v['data_pernyataan']['pernyataan'],$rules->toArray()),', ')
 

@@ -54,7 +54,7 @@
                                     <div class="form-group col-12">
                                         <label for="nik">NIK</label>
                                         <input id="nik" type="text" class="form-control" name="nik"
-                                            autofocus>
+                                            value="{{ old('nik') }}" autofocus>
                                         @error('nik')
                                             <span class="text-red-600">{{ $message }}</span>
                                         @enderror
@@ -62,7 +62,7 @@
                                     <div class="form-group col-12">
                                         <label for="nama_lengkap">nama lengkap</label>
                                         <input id="nama_lengkap" type="text" class="form-control" name="nama_lengkap"
-                                            autofocus>
+                                            value="{{ old('nama_lengkap') }}" autofocus>
                                         @error('nama_lengkap')
                                             <span class="text-red-600">{{ $message }}</span>
                                         @enderror
@@ -70,7 +70,7 @@
                                     <div class="form-group col-12">
                                         <label for="tanggal_lahir">tanggal_lahir</label>
                                         <input id="tanggal_lahir" type="date" class="form-control"
-                                            name="tanggal_lahir" autofocus>
+                                            name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" autofocus>
                                         @error('tanggal_lahir')
                                             <span class="text-red-600">{{ $message }}</span>
                                         @enderror
@@ -78,14 +78,15 @@
                                     <div class="form-group col-12">
                                         <label for="alamat">alamat</label>
                                         <input id="alamat" type="text" class="form-control" name="alamat"
-                                            autofocus> @error('alamat')
+                                            value="{{ old('alamat') }}" autofocus> @error('alamat')
                                             <span class="text-red-600">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="form-group col-12">
                                         <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email">
+                                        <input id="email" type="email" class="form-control" name="email"
+                                            value="{{ old('email') }}">
                                         <div class="invalid-feedback">
                                         </div>
                                         @error('email')

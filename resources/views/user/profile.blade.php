@@ -16,7 +16,7 @@
             <div class="card w-100">
                 <form method="post" class="needs-validation" novalidate="">
                     <div class="card-header">
-                        <h4>Edit Profile</h4>
+                        <h4>Profile</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -57,9 +57,9 @@
                         </div>
 
                     </div>
-                    <div class="card-footer text-right">
+                    {{-- <div class="card-footer text-right">
                         <button class="btn btn-primary" type="submit">Save Changes</button>
-                    </div>
+                    </div> --}}
                 </form>
             </div>
         </div>

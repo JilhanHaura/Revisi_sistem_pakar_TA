@@ -14,7 +14,7 @@ class Konsultasi extends Model
     // protected $fillable=['tanggal_konsultasi','hasil_skrinning','cf_max','pertanyaan_terpilih'];
 
 
-      public function rule_gejala(){
+    public function rule_gejala(){
         return $this->belongsToMany(Rule::class)->withPivot('nilai_cf');
     }
     public function rule_pernyataan(){
